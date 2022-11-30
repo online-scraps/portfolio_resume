@@ -42,30 +42,12 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- END: Mobile Menu -->
     <div class="flex">
         <!-- BEGIN: Side Menu -->
-        @include('ar.partials.sidebar')
+            @include('ar.partials.sidebar')
         <!-- END: Side Menu -->
         <!-- BEGIN: Content -->
-        <div class="content">
-            <!-- BEGIN: Top Bar -->
-            <div class="top-bar">
-                <!-- BEGIN: Breadcrumb -->
-                @yield(
-                    'breadcrumb',
-                    '<div class="-intro-x breadcrumb mr-auto hidden sm:flex"> <a href="/home"
-                                                    class="">Home</a> <i data-feather="pause" class="breadcrumb__icon"></i> <a
-                                                    href="/admin/dashboard" class="breadcrumb--active">Dashboard</a> </div>',
-                )
-                <!-- END: Breadcrumb -->
-                @include('ar.partials.myAccount')
-            </div>
-            <!-- END: Top Bar -->
             @yield('body')
-        </div>
         <!-- END: Content -->
     </div>
-    <!-- BEGIN: Dark Mode Switcher-->
-    @include('ar.partials.darkModeSwitch')
-    <!-- END: Dark Mode Switcher-->
     <!-- BEGIN: JS Assets-->
     {{-- <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
     </script>
