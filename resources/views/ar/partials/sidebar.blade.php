@@ -17,5 +17,31 @@
                 <div class="side-menu__title"> Projects </div>
             </a>
         </li>
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="box"></i> </div>
+                <div class="side-menu__title"> Authentication <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="top-menu-light-dashboard.html" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Users </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.roles.index') }}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Roles </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.permissions') }}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                        <div class="side-menu__title"> Permissions </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </nav>

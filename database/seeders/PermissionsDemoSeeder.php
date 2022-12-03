@@ -23,18 +23,18 @@ class PermissionsDemoSeeder extends Seeder
 
         // create permissions
         Permission::create(['name' => 'edit projects']);
+        Permission::create(['name' => 'create projects']);
+        Permission::create(['name' => 'update projects']);
         Permission::create(['name' => 'delete projects']);
-        Permission::create(['name' => 'publish projects']);
-        Permission::create(['name' => 'unpublish projects']);
 
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'projecteditor']);
         $role1->givePermissionTo('edit projects');
-        $role1->givePermissionTo('delete projects');
+        $role1->givePermissionTo('create projects');
 
         $role2 = Role::create(['name' => 'admin']);
-        $role2->givePermissionTo('publish projects');
-        $role2->givePermissionTo('unpublish projects');
+        $role2->givePermissionTo('update projects');
+        $role2->givePermissionTo('delete projects');
 
         $role3 = Role::create(['name' => 'Super-Admin']);
         // gets all permissions via Gate::before rule; see AuthServiceProvider
