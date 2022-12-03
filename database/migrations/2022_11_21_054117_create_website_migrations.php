@@ -91,7 +91,6 @@ class CreateWebsiteMigrations extends Migration
             $table->string('link')->nullable();
             $table->text('description')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
-
             $table->timestamps();
         });
 

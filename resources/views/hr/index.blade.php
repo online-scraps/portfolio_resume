@@ -23,7 +23,7 @@
                         </h1>
                         <p class="color_white mb_30">Libero habitasse sollicitudin aliquet venenatis iaculis
                             placerat amet ligula, eleifend nonummy enim in volutpat diam.</p>
-                        <a class="btn btn-default" href="#">Download CV</a>
+                        <a class="btn btn-default" href="{{ route('admin.dashboard') }}">Admin</a>
                     </div>
                 </div>
             </div>

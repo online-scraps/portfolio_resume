@@ -18,6 +18,7 @@
                     <li class="nav-item"><a class="nav-link" href="#testimonial">Testimonial</a></li>
                     <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    {{-- <li class="nav-item"><a class="nav-link" href="/admin/dashboard">Admin</a></li> --}}
                 </ul>
             </div>
         </nav>

@@ -17,7 +17,7 @@
             <!-- BEGIN: Account Menu -->
             <div class="intro-x dropdown w-8 h-8">
                 <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in">
-                    <img alt="Midone Tailwind HTML Admin Template" src="dist/images/profile-1.jpg">
+                    <img alt="Midone Tailwind HTML Admin Template" src="/ar/dist/images/profile-1.jpg">
                 </div>
                 <div class="dropdown-box w-56">
                     <div class="dropdown-box__content box bg-theme-38 dark:bg-dark-6 text-white">
@@ -60,8 +60,6 @@
                         <h2 class="text-lg font-medium truncate mr-5">
                             General Report
                         </h2>
-                        <a href="" class="ml-auto flex text-theme-1 dark:text-theme-10"> <i
-                                data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
                     </div>
                     <div class="grid grid-cols-12 gap-6 mt-5">
                         <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
@@ -170,7 +168,7 @@
                                 <div class="intro-x">
                                     <div class="box px-5 py-3 mb-3 flex items-center zoom-in">
                                         <div class="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                                            <img alt="Midone Tailwind HTML Admin Template" src="dist/images/profile-15.jpg">
+                                            <img alt="Midone Tailwind HTML Admin Template" src="/ar/dist/images/profile-15.jpg">
                                         </div>
                                         <div class="ml-4 mr-auto">
                                             <div class="font-medium">{{ $service->name }}</div>
@@ -200,7 +198,7 @@
                                 <div class="intro-y">
                                     <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
                                         <div class="w-10 h-10 flex-none image-fit rounded-md overflow-hidden">
-                                            <img alt="Midone Tailwind HTML Admin Template" src="dist/images/profile-15.jpg">
+                                            <img alt="Midone Tailwind HTML Admin Template" src="/ar/dist/images/profile-15.jpg">
                                         </div>
                                         <div class="ml-4 mr-auto">
                                             <div class="font-medium">{{ $skill->name }}</div>
