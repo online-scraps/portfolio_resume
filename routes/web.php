@@ -48,6 +48,7 @@ Route::name('admin.')
         Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
         Route::resource('/projects', App\Http\Controllers\Admin\ProjectsController::class)->except('create', 'edit', 'show');
         Route::resource('/roles', App\Http\Controllers\Admin\RoleController::class)->except('create', 'edit', 'show');
+        Route::resource('/users', App\Http\Controllers\Admin\Auth\UserController::class)->except('create', 'edit', 'show');
         Route::get('/permissions',[App\Http\Controllers\Admin\PermissionsController::class, 'index'])->name('permissions');
         Route::get('/permissions/generate',[App\Http\Controllers\Admin\PermissionsController::class, 'generatePermissions'])->name('permissions.generate');
     });

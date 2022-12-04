@@ -24,7 +24,7 @@
             </a>
             <ul class="">
                 <li>
-                    <a href="top-menu-light-dashboard.html" class="side-menu">
+                    <a href="{{ route('admin.users.index') }}" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                         <div class="side-menu__title"> Users </div>
                     </a>

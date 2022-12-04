@@ -14,6 +14,7 @@ use App\Models\Services;
 use App\Models\Skills;
 use App\Models\SocialMedias;
 use App\Models\Testimonials;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -31,6 +32,7 @@ class DashboardController extends Controller
         $this->data['skills'] = Skills::all();
         $this->data['social_medias'] = SocialMedias::all();
         $this->data['testimonials'] = Testimonials::all();
+        $this->data['users'] = User::all();
         return view('ar.dashboard', $this->data);
     }
 }

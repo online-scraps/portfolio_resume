@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -42,4 +44,49 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getRoleNameForAuthUser($userId)
+    {
+        $user = User::find($userId);
+        $roles = array_values($user->getRoleNames()->toArray());
+        if (count($roles) > 0){
+            return implode(", ", $roles);
+        }else{
+            return "No Role Assigned";
+        }
+    }
+
+    public function getRoleIdForAuthUser($collection, $key, $identifier, $role)
+    {
+        $string  = $collection[$identifier]. ' '. $key;
+        $permission = \Spatie\Permission\Models\Permission::where('name', $string)->first();
+        $permissionIdArr = $role->permissions->pluck('id')->toArray();
+        $checkStatus = in_array($permission->id, $permissionIdArr);
+        if(($checkStatus)){
+            return true;
+        }
+        return false;
+    }
+
+
+
+    public function getOldEmailForEdit($userId)
+    {
+        $user = User::find($userId);
+        if($user){
+            return $user->email;
+        }else{
+            return "";
+        }
+    }
+
+    public function getOldNameForEdit($userId)
+    {
+        $user = User::find($userId);
+        if($user){
+            return $user->name;
+        }else{
+            return "";
+        }
+    }
 }

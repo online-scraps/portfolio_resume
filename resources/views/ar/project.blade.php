@@ -62,21 +62,21 @@
         </h2>
         @php
             // dd(Auth::user());
-            dd(auth()->user()->can('edit projects'));
-            // $user = Auth::user();
-            $all_users_with_all_their_roles = \App\Models\User::with('roles')->get();
-            foreach ($all_users_with_all_their_roles as $user) {
-                # code...
-                dd(
-                    $user->getRoleNames(),
-                    $user->getPermissionNames(),
-                    $user->permissions(),
-                    $user->getAllPermissions(),
-                    $user->getPermissionsViaRoles(),
-                    $user->getDirectPermissions()
-                );
-            }
-            dd($all_users_with_all_their_roles);
+            // dd(auth()->user()->can('edit projects'));
+            // // $user = Auth::user();
+            // $all_users_with_all_their_roles = \App\Models\User::with('roles')->get();
+            // foreach ($all_users_with_all_their_roles as $user) {
+            //     # code...
+            //     dd(
+            //         $user->getRoleNames(),
+            //         $user->getPermissionNames(),
+            //         $user->permissions(),
+            //         $user->getAllPermissions(),
+            //         $user->getPermissionsViaRoles(),
+            //         $user->getDirectPermissions()
+            //     );
+            // }
+            // dd($all_users_with_all_their_roles);
         @endphp
         <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">

@@ -16,6 +16,7 @@ class ProjectsController extends Controller
     public function __construct()
     {
         $this->user = Auth::user();
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
