@@ -56,14 +56,15 @@ class User extends Authenticatable
         }
     }
 
-    public function getRoleIdForAuthUser($collection, $key, $identifier, $role)
+    public function getRoleIdForAuthUser($userId, $roleId)
     {
-        $string  = $collection[$identifier]. ' '. $key;
-        $permission = \Spatie\Permission\Models\Permission::where('name', $string)->first();
-        $permissionIdArr = $role->permissions->pluck('id')->toArray();
-        $checkStatus = in_array($permission->id, $permissionIdArr);
-        if(($checkStatus)){
-            return true;
+        $user = User::find($userId);
+        $roles = array_values($user->getRoleNames()->toArray());
+        if (count($roles) > 0){
+            $rolesId = Role::where('name', $roles[0])->first()->id;
+            if($rolesId == $roleId){
+                return true;
+            }
         }
         return false;
     }
