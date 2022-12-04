@@ -32,12 +32,15 @@
                     </label>
                 </div>
                 @foreach ($collection as $identifier => $option)
-                @php
-                    $string  = $collection[$identifier]. ' '. $key;
-                    $permission = \Spatie\Permission\Models\Permission::where('name', $string)->first();
-                    $checkstatus = App\Http\Traits\AuthTrait::getRoleIdForAuthUser($collection, $key, $identifier, $role);
-                    // dd($checkstatus);
-                @endphp
+
+
+                    @php
+                        $string  = $collection[$identifier]. ' '. $key;
+                        $permission = \Spatie\Permission\Models\Permission::where('name', $string)->first();
+                        $checkstatus = App\Http\Traits\AuthTrait::checkPermissionInputFields($permission, $role);
+                    @endphp
+
+
                 <div class="flex items-center text-gray-700 mr-2">
                     <input type="checkbox" class="input border mr-2 checkbox-checkall-check-child checkall-checkbox-{{ $classId }}" id="permission-name-{{ $permission->id }}" name="permissions[{{ $permission->id }}]" {{ $checkstatus }}>
                     <label class="cursor-pointer select-none" for="permission-name-{{ $permission->id }}">{{ $option }}
