@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(WebsiteDummyDataSeeder::class);
-        $this->call(PermissionsDemoSeeder::class);
+        // $this->call(PermissionsDemoSeeder::class);
     }
 }

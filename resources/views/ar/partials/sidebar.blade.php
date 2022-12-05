@@ -11,12 +11,15 @@
                 <div class="side-menu__title"> Dashboard </div>
             </a>
         </li>
-        <li>
-            <a href="{{ route('admin.projects.index') }}" class="side-menu">
-                <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
-                <div class="side-menu__title"> Projects </div>
-            </a>
-        </li>
+        @if ($user->hasPermissionTo('list projects'))
+            <li>
+                <a href="{{ route('admin.projects.index') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
+                    <div class="side-menu__title"> Projects </div>
+                </a>
+            </li>
+        @endif
+        {{-- @if ($user->hasPermissionTo('list users') || $user->hasPermissionTo('list roles') || $user->hasPermissionTo('list permissions')) --}}
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="box"></i> </div>
@@ -43,5 +46,6 @@
                 </li>
             </ul>
         </li>
+        {{-- @endif --}}
     </ul>
 </nav>

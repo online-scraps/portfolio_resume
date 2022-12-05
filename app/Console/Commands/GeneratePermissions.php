@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Models\MenuItem;
 use Illuminate\Console\Command;
 use Doctrine\Inflector\Inflector;
-use Spatie\Permission\Models\Permission;
+use App\Models\Permission;
 use Doctrine\Inflector\NoopWordInflector;
 
 

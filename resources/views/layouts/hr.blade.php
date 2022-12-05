@@ -113,11 +113,7 @@
             </div>
         </div>
         <div class="template_style">
-            <span class="layout_title">Template Style</span>
-            <ul>
-                <li><a class="btn_link" href="index-7.html" target="blank">White Version</a></li>
-                <li><a class="btn_link" href="index-8.html" target="blank">Black Version</a></li>
-            </ul>
+            <a class="btn_link" href="{{ route('admin.dashboard') }}" target="blank">Go To Admin Panel</a>
         </div>
         <div class="box_bg_style">
             <span class="layout_title">Background pattern</span>

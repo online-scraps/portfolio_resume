@@ -8,16 +8,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProjectsRequest;
 use App\Http\Requests\UpdateProjectsRequest;
+use App\Http\Traits\AuthTrait;
 
 class ProjectsController extends Controller
 {
+    use AuthTrait;
     protected $user;
 
     public function __construct()
     {
-        $this->user = Auth::user();
-        $this->middleware('auth');
+
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,6 +27,8 @@ class ProjectsController extends Controller
      */
     public function index()
     {
+        $this->user = Auth::user();
+        $this->checkCRUDPermission('App\Models\Projects', 'list');
         $projects = Projects::all();
         return view('ar.project', compact('projects'));
     }
@@ -37,12 +41,12 @@ class ProjectsController extends Controller
      */
     public function store(StoreProjectsRequest $request)
     {
+        $this->checkCRUDPermission('App\Models\Projects', 'create');
         $project = new Projects();
         $project->name = $request->name;
         $project->description = $request->description;
         $project->category_id = $request->category_id;
         $project->link = $request->link;
-        // $project->created_by = $this->user->id;
         $project->created_by = 1;
         $project->save();
         return redirect()->back()->with('success', 'Project Created Successfully');
@@ -57,6 +61,7 @@ class ProjectsController extends Controller
      */
     public function update(UpdateProjectsRequest $request, $id)
     {
+        $this->checkCRUDPermission('App\Models\Projects', 'update');
         $project = Projects::find($id);
         $project->name = $request->name;
         $project->description = $request->description;

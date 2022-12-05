@@ -2,23 +2,30 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\BlogCategories;
-use App\Models\BlogPosts;
+use App\Models\User;
+use App\Models\Skills;
 use App\Models\BlogTags;
-use App\Models\Educations;
-use App\Models\Experiences;
 use App\Models\Messages;
 use App\Models\Projects;
 use App\Models\Services;
-use App\Models\Skills;
+use App\Models\BlogPosts;
+use App\Models\Educations;
+use App\Models\Experiences;
 use App\Models\SocialMedias;
 use App\Models\Testimonials;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\BlogCategories;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->user = Auth::user();
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $this->data['blog_categories'] = BlogCategories::all();

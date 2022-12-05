@@ -1,6 +1,6 @@
 @php
-    $results = \Spatie\Permission\Models\Permission::all();
-    $options = \Spatie\Permission\Models\Permission::all()
+    $results = \App\Models\Permission::all();
+    $options = \App\Models\Permission::all()
         ->pluck('name', 'id')
         ->toArray();
     $permission_collection = [];
@@ -36,8 +36,8 @@
 
                     @php
                         $string  = $collection[$identifier]. ' '. $key;
-                        $permission = \Spatie\Permission\Models\Permission::where('name', $string)->first();
-                        $checkstatus = App\Http\Traits\AuthTrait::checkPermissionInputFields($permission, $role);
+                        $permission = \App\Models\Permission::where('name', $string)->first();
+                        $checkstatus = \App\Http\Traits\AuthTrait::checkPermissionInputFields($permission, $role);
                     @endphp
 
 

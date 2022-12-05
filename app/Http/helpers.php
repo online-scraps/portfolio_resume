@@ -1,6 +1,7 @@
 <?php
 use App\Models\User;
 use App\Utils\DateHelper;
+use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -21,10 +22,5 @@ function modelCollection()
     }
 
     return $output;
-}
-
-function dateToString($date)
-{
-    return Carbon::parse($date)->toDateString();
 }
 
