@@ -85,7 +85,7 @@
                     </div>
                     <div class="col-md-5 col-lg-5">
                         <div class="profile_img personal_video wow animated fadeInRight">
-                            <img src="images/about/03.png" alt="image">
+                            <img src="/hr/images/about/03.png" alt="image">
                             <div class="iconround"><a class="video-popup" href="https://vimeo.com/134660574"
                                     title="video popup">
                                     <i class="fa fa-play" aria-hidden="true"></i></a></div>
@@ -356,8 +356,8 @@
                                 <div class="row">
                                     <div class="column mix mix_all graphic development wordpress mb_30 col-md-4 col-lg-4">
                                         <div class="default-portfolio-item">
-                                            <a href="images/portfolio/01.jpg" data-fancybox="gallery">
-                                                <img src="images/portfolio/01.jpg" alt="image" />
+                                            <a href="/hr/images/portfolio/01.jpg" data-fancybox="gallery">
+                                                <img src="/hr/images/portfolio/01.jpg" alt="image" />
                                                 <div class="overlay-box">
                                                     <span><i class="fa fa-eye" aria-hidden="true"></i></span>
                                                     <div class="tag">
@@ -372,8 +372,8 @@
                                     </div>
                                     <div class="column mix mix_all graphic branding mb_30 col-md-4 col-lg-4">
                                         <div class="default-portfolio-item">
-                                            <a href="images/portfolio/02.jpg" data-fancybox="gallery">
-                                                <img src="images/portfolio/02.jpg" alt="image" />
+                                            <a href="/hr/images/portfolio/02.jpg" data-fancybox="gallery">
+                                                <img src="/hr/images/portfolio/02.jpg" alt="image" />
                                                 <div class="overlay-box">
                                                     <span><i class="fa fa-eye" aria-hidden="true"></i></span>
                                                     <div class="tag">
@@ -388,8 +388,8 @@
                                     </div>
                                     <div class="column mix mix_all design wordpress development mb_30 col-md-4 col-lg-4">
                                         <div class="default-portfolio-item">
-                                            <a href="images/portfolio/03.jpg" data-fancybox="gallery">
-                                                <img src="images/portfolio/03.jpg" alt="image" />
+                                            <a href="/hr/images/portfolio/03.jpg" data-fancybox="gallery">
+                                                <img src="/hr/images/portfolio/03.jpg" alt="image" />
                                                 <div class="overlay-box">
                                                     <span><i class="fa fa-eye" aria-hidden="true"></i></span>
                                                     <div class="tag">
@@ -404,8 +404,8 @@
                                     </div>
                                     <div class="column mix mix_all graphic wordpress branding mb_30 col-md-4 col-lg-4">
                                         <div class="default-portfolio-item">
-                                            <a href="images/portfolio/04.jpg" data-fancybox="gallery">
-                                                <img src="images/portfolio/04.jpg" alt="image" />
+                                            <a href="/hr/images/portfolio/04.jpg" data-fancybox="gallery">
+                                                <img src="/hr/images/portfolio/04.jpg" alt="image" />
                                                 <div class="overlay-box">
                                                     <span><i class="fa fa-eye" aria-hidden="true"></i></span>
                                                     <div class="tag">
@@ -420,8 +420,8 @@
                                     </div>
                                     <div class="column mix mix_all graphic design branding mb_30 col-md-4 col-lg-4">
                                         <div class="default-portfolio-item">
-                                            <a href="images/portfolio/05.jpg" data-fancybox="gallery">
-                                                <img src="images/portfolio/05.jpg" alt="image" />
+                                            <a href="/hr/images/portfolio/05.jpg" data-fancybox="gallery">
+                                                <img src="/hr/images/portfolio/05.jpg" alt="image" />
                                                 <div class="overlay-box">
                                                     <span><i class="fa fa-eye" aria-hidden="true"></i></span>
                                                     <div class="tag">
@@ -436,8 +436,8 @@
                                     </div>
                                     <div class="column mix mix_all development wordpress design mb_30 col-md-4 col-lg-4">
                                         <div class="default-portfolio-item">
-                                            <a href="images/portfolio/06.jpg" data-fancybox="gallery">
-                                                <img src="images/portfolio/06.jpg" alt="image" />
+                                            <a href="/hr/images/portfolio/06.jpg" data-fancybox="gallery">
+                                                <img src="/hr/images/portfolio/06.jpg" alt="image" />
                                                 <div class="overlay-box">
                                                     <span><i class="fa fa-eye" aria-hidden="true"></i></span>
                                                     <div class="tag">
@@ -477,7 +477,7 @@
                 <div class="col-md-12 col-lg-12">
                     <div class="testimonial_item owl-carousel wow animated slideInUp">
                         <div class="member_feedback p_30 color_secondery">
-                            <div class="client_img"><img src="images/testimonial/01.jpg" alt="image">
+                            <div class="client_img"><img src="/hr/images/testimonial/01.jpg" alt="image">
                             </div>
                             <div class="star d-inline-block mt_30 color_default">
                                 <ul>
@@ -494,7 +494,7 @@
                                 aenean commodo sociosqu.</p>
                         </div>
                         <div class="member_feedback p_30 color_secondery">
-                            <div class="client_img"><img src="images/testimonial/02.jpg" alt="image">
+                            <div class="client_img"><img src="/hr/images/testimonial/02.jpg" alt="image">
                             </div>
                             <div class="star d-inline-block mt_30 color_default">
                                 <ul>
@@ -511,7 +511,7 @@
                                 aenean commodo sociosqu.</p>
                         </div>
                         <div class="member_feedback p_30 color_secondery">
-                            <div class="client_img"><img src="images/testimonial/03.jpg" alt="image">
+                            <div class="client_img"><img src="/hr/images/testimonial/03.jpg" alt="image">
                             </div>
                             <div class="star d-inline-block mt_30 color_default">
                                 <ul>
@@ -528,7 +528,7 @@
                                 aenean commodo sociosqu.</p>
                         </div>
                         <div class="member_feedback p_30 color_secondery">
-                            <div class="client_img"><img src="images/testimonial/04.jpg" alt="image">
+                            <div class="client_img"><img src="/hr/images/testimonial/04.jpg" alt="image">
                             </div>
                             <div class="star d-inline-block mt_30 color_default">
                                 <ul>
@@ -573,7 +573,7 @@
                                         <i class="fa fa-comment" aria-hidden="true"></i>
                                         <span class="color_white">12</span>
                                     </div>
-                                    <div class="blog_img overlay_one"><img src="images/blog/01.jpg" alt="image"></div>
+                                    <div class="blog_img overlay_one"><img src="/hr/images/blog/01.jpg" alt="image"></div>
                                     <div class="blog_content bg_white color_secondery">
                                         <div class="blog_title">
                                             <a class="color_primary" href="blog-details.html">
@@ -587,7 +587,7 @@
                                             element turpis dolor curae; posuere augue.</p>
 
                                         <div class="admin">
-                                            <img src="images/about/02.jpg" alt="image">
+                                            <img src="/hr/images/about/02.jpg" alt="image">
                                             <span class="color_white">By - Rockstar Jack</span>
                                         </div>
                                         <div class="date float-right color_primary">20 Jan 2019</div>
@@ -600,7 +600,7 @@
                                         <i class="fa fa-comment" aria-hidden="true"></i>
                                         <span class="color_white">18</span>
                                     </div>
-                                    <div class="blog_img overlay_one"><img src="images/blog/02.jpg" alt="image"></div>
+                                    <div class="blog_img overlay_one"><img src="/hr/images/blog/02.jpg" alt="image"></div>
                                     <div class="blog_content bg_white color_secondery">
                                         <div class="blog_title">
                                             <a class="color_primary" href="blog-details.html">
@@ -614,7 +614,7 @@
                                             element turpis dolor curae; posuere augue.</p>
 
                                         <div class="admin">
-                                            <img src="images/about/02.jpg" alt="image">
+                                            <img src="/hr/images/about/02.jpg" alt="image">
                                             <span class="color_white">By - Rockstar Jack</span>
                                         </div>
                                         <div class="date float-right color_primary">18 Jan 2019</div>
@@ -627,7 +627,7 @@
                                         <i class="fa fa-comment" aria-hidden="true"></i>
                                         <span class="color_white">23</span>
                                     </div>
-                                    <div class="blog_img overlay_one"><img src="images/blog/03.jpg" alt="image"></div>
+                                    <div class="blog_img overlay_one"><img src="/hr/images/blog/03.jpg" alt="image"></div>
                                     <div class="blog_content bg_white color_secondery">
                                         <div class="blog_title">
                                             <a class="color_primary" href="blog-details.html">
@@ -641,7 +641,7 @@
                                             element turpis dolor curae; posuere augue.</p>
 
                                         <div class="admin">
-                                            <img src="images/about/02.jpg" alt="image">
+                                            <img src="/hr/images/about/02.jpg" alt="image">
                                             <span class="color_white">By - Rockstar Jack</span>
                                         </div>
                                         <div class="date float-right color_primary">17 Jan 2019</div>

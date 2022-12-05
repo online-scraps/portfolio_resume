@@ -63,7 +63,7 @@
                                 <td>
                                     <a href="" class="font-medium whitespace-no-wrap">{{ $role->name }}</a>
                                 </td>
-                                <td class="text-center">
+                                <td class="">
                                     @include('ar.partials.permissionsColumn')
                                 </td>
                                 <td>
@@ -71,8 +71,8 @@
                                         {{ count($role->users) }}</div>
                                 </td>
                                 <td class="table-report__action w-56">
-                                    <div class="flex justify-center items-center">
-                                        @if ($user->hasPermissionTo('update role'))
+                                    <div class="flex">
+                                        {{-- @if ($user->hasPermissionTo('update role')) --}}
                                             <a class="flex items-center mr-3" href="javascript:;" data-toggle="modal"
                                                 data-target="#edit-modal-{{ $role->id }}">
                                                 <i data-feather="check-square" class="w-4 h-4 mr-1"></i>
@@ -109,7 +109,7 @@
                                                 </div>
                                             </div>
                                             <!-- END: Edit Modal -->
-                                        @endif
+                                        {{-- @endif --}}
                                         @if ($user->hasPermissionTo('delete role'))
                                             <a class="flex items-center text-theme-6" href="javascript:;"
                                                 onclick="deleteRecord('#delete_form-{{ $role->id }}');">

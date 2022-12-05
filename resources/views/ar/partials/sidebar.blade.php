@@ -11,6 +11,7 @@
                 <div class="side-menu__title"> Dashboard </div>
             </a>
         </li>
+        {{-- {{ dd(Auth::user(), Auth::id(), \App\Models\User::find(Auth::id()), $user->getRoleNames(), $user->hasPermissionTo('list projects')) }} --}}
         @if ($user->hasPermissionTo('list projects'))
             <li>
                 <a href="{{ route('admin.projects.index') }}" class="side-menu">
@@ -19,33 +20,40 @@
                 </a>
             </li>
         @endif
-        {{-- @if ($user->hasPermissionTo('list users') || $user->hasPermissionTo('list roles') || $user->hasPermissionTo('list permissions')) --}}
+        @if ($user->hasPermissionTo('list user') || $user->hasPermissionTo('list role') || $user->hasPermissionTo('list permission'))
         <li>
             <a href="javascript:;" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="box"></i> </div>
                 <div class="side-menu__title"> Authentication <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
-                <li>
-                    <a href="{{ route('admin.users.index') }}" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Users </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.roles.index') }}" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Roles </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.permissions') }}" class="side-menu">
-                        <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Permissions </div>
-                    </a>
-                </li>
+                @if ($user->hasPermissionTo('list user'))
+                    <li>
+                        <a href="{{ route('admin.users.index') }}" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="side-menu__title"> Users </div>
+                        </a>
+                    </li>
+                @endif
+                @if ($user->hasPermissionTo('list role'))
+                    <li>
+                        <a href="{{ route('admin.roles.index') }}" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="side-menu__title"> Roles </div>
+                        </a>
+                    </li>
+                @endif
+                @if ($user->hasPermissionTo('list permission'))
+                    <li>
+                        <a href="{{ route('admin.permissions') }}" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="side-menu__title"> Permissions </div>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </li>
-        {{-- @endif --}}
+
+        @endif
     </ul>
 </nav>

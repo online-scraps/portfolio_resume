@@ -30,7 +30,6 @@ class WebsiteDummyDataSeeder extends Seeder
      */
     public function run()
     {
-        // dd('ok');
         $user1 = User::create([
             'name' => 'Super Admin',
             'email' => 'super@admin.com',
@@ -39,7 +38,7 @@ class WebsiteDummyDataSeeder extends Seeder
             'remember_token' => Str::random(10)
         ]);
         $role1 = Role::create([
-            'name' => 'Super Admin',
+            'name' => 'super_admin',
             'guard_name' => 'web',
         ]);
         $user1->assignRole($role1);
@@ -52,7 +51,7 @@ class WebsiteDummyDataSeeder extends Seeder
             'remember_token' => Str::random(10)
         ]);
         $role2 = Role::create([
-            'name' => 'Admin',
+            'name' => 'admin',
             'guard_name' => 'web',
         ]);
         $user2->assignRole($role2);
@@ -65,7 +64,7 @@ class WebsiteDummyDataSeeder extends Seeder
             'remember_token' => Str::random(10)
         ]);
         $role3 = Role::create([
-            'name' => 'Example Test',
+            'name' => 'example_test',
             'guard_name' => 'web',
         ]);
         $user3->assignRole($role3);
@@ -78,7 +77,7 @@ class WebsiteDummyDataSeeder extends Seeder
             'remember_token' => Str::random(10)
         ]);
         $role4 = Role::create([
-            'name' => 'Example Admin',
+            'name' => 'example_admin',
             'guard_name' => 'web',
         ]);
         $user4->assignRole($role4);
@@ -91,7 +90,7 @@ class WebsiteDummyDataSeeder extends Seeder
             'remember_token' => Str::random(10)
         ]);
         $role5 = Role::create([
-            'name' => 'Example Super Admin',
+            'name' => 'example_super_admin',
             'guard_name' => 'web',
         ]);
         $user5->assignRole($role5);
@@ -99,8 +98,6 @@ class WebsiteDummyDataSeeder extends Seeder
 
         // Auth
         User::factory(10)->create();
-        // Role::factory(10)->create();
-        // Permission::factory(10)->create();
 
         // Blog
         BlogCategories::factory(5)->create();
@@ -118,6 +115,10 @@ class WebsiteDummyDataSeeder extends Seeder
         Testimonials::factory(10)->create();
 
         Artisan::call('generate:permissions');
+
+        $permissions = Permission::all()->pluck('name');
+
+        $role1->syncPermissions($permissions);
 
     }
 }

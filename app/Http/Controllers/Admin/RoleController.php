@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\Role;
+use App\Http\Traits\AuthTrait;
 use App\Http\Controllers\Controller;
-use App\Models\Permission;
 
 class RoleController extends Controller
 {
+    use AuthTrait;
 
     /**
      * RoleController constructor.
@@ -25,9 +27,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        // $this->data['roles'] = Role::all();
+        $this->checkCRUDPermission('App\Models\Role', 'list');
         $this->data['roles'] = Role::with('users')->get();
         $this->data['permissions'] = Permission::all();
+
         return view('ar.auth.role', $this->data);
     }
 
@@ -39,14 +42,14 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        $this->checkCRUDPermission('App\Models\Role', 'create');
         $role = Role::create(['name' => $request->name]);
         $permissions = Permission::findMany(array_keys($request->permissions));
         // foreach ($permissions as $permission) {
         //     $role->givePermissionTo($permission);
         // }
         $role->syncPermissions($permissions);
-        return redirect()->back()->with('successMessage', 'Role created successfully');
+        return redirect()->back()->with('success', 'Role created successfully');
     }
 
     /**
@@ -58,13 +61,14 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->checkCRUDPermission('App\Models\Role', 'update');
         $role = Role::find($id);
         $role->update(['name', $request->name]);
         // $role->name = $request->name;
         // $role->save();
         $permissions = Permission::findMany(array_keys($request->permissions));
         $role->syncPermissions($permissions);
-        return redirect()->back()->with('successMessage', 'Role Updated successfully');
+        return redirect()->back()->with('success', 'Role Updated successfully');
     }
 
     /**
@@ -75,8 +79,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
+        $this->checkCRUDPermission('App\Models\Role', 'delete');
         $role = Role::find($id);
         $role->delete();
-        return redirect()->back()->with('successMessage', 'Role deleted successfully');
+        return redirect()->back()->with('success', 'Role deleted successfully');
     }
 }

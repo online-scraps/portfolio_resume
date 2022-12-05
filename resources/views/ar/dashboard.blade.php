@@ -3,8 +3,18 @@
 
 @section('head')
 @endsection
+@section('breadcrumb')
+    @php
+        $userId = Auth::id();
+        $user = App\Models\User::find($userId);
+    @endphp
 
+    <div class="-intro-x breadcrumb mr-auto hidden sm:flex"> <a href="{{ route('home') }}"
+            class="">Application</a> <i data-feather="chevron-right" class="breadcrumb__icon"></i> <a
+            href="{{ route('admin.dashboard') }}" class="breadcrumb--active">Dashboard</a> </div>
+@endsection
 @section('body')
+
     <div class="content">
         <!-- BEGIN: Top Bar -->
         <div class="top-bar">
@@ -105,7 +115,9 @@
                             <h2 class="text-lg font-medium truncate mr-auto">
                                 All Services
                             </h2>
-                            <a href="" class="ml-auto text-theme-1 dark:text-theme-10 truncate mx-5">See all</a>
+                            @if ($user->hasPermissionTo('list services'))
+                                <a href="" class="ml-auto text-theme-1 dark:text-theme-10 truncate mx-5">See all</a>
+                            @endif
                             <button data-carousel="important-notes" data-target="prev" class="tiny-slider-navigator button px-2 border border-gray-400 dark:border-dark-5 flex items-center text-gray-700 dark:text-gray-600 mr-2"> <i data-feather="chevron-left" class="w-4 h-4"></i> </button>
                             <button data-carousel="important-notes" data-target="next" class="tiny-slider-navigator button px-2 border border-gray-400 dark:border-dark-5 flex items-center text-gray-700 dark:text-gray-600"> <i data-feather="chevron-right" class="w-4 h-4"></i> </button>
                         </div>
@@ -147,8 +159,9 @@
                                     </div>
                                 </div>
                             @endforeach
-
-                            <a href="{{ route('admin.projects.index') }}" class="intro-x w-full block text-center rounded-md py-3 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a>
+                            @if ($user->hasPermissionTo('list projects'))
+                                <a href="{{ route('admin.projects.index') }}" class="intro-x w-full block text-center rounded-md py-3 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a>
+                            @endif
                         </div>
                     <!-- END: Projects -->
                     @endif
@@ -177,7 +190,9 @@
                                     </div>
                                 </div>
                             @endforeach
-                        <a href="" class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a>
+                            @if ($user->hasPermissionTo('list skills'))
+                                <a href="" class="intro-y w-full block text-center rounded-md py-4 border border-dotted border-theme-15 dark:border-dark-5 text-theme-16 dark:text-gray-600">View More</a>
+                            @endif
                     </div>
                 </div>
                 <!-- END: Skills -->

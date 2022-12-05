@@ -35,11 +35,11 @@
             All Projects
         </h2>
         <div class="grid grid-cols-12 gap-6 mt-5">
-            @if ($this->checkCRUDPermission('App\Models\Projects', 'create'))
+            @if ($user->hasPermissionTo('create projects'))
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                     <a href="javascript:;" class="button text-white bg-theme-1 shadow-md mr-2" data-toggle="modal"
                         data-target="#create-modal">
-                        Add New Product
+                        Add New Project
                     </a>
                 </div>
             @endif
@@ -68,12 +68,60 @@
                                     <div class="text-gray-600 text-xs whitespace-no-wrap">
                                         {{ $project->getProjectCategoryType() }}</div>
                                 </td>
-                                <td class="text-center">{{ url($project->link) }}</td>
+                                <td class="">{{ url($project->link) }}</td>
                                 <td class="table-report__action w-56">
-                                    <div class="flex justify-center items-center">
-                                        <a class="flex items-center mr-3" href="javascript:;" data-toggle="modal"
+                                    <div class="flex">
+                                        @if ($user->hasPermissionTo('update projects'))
+                                            <a class="flex items-center mr-3" href="javascript:;" data-toggle="modal"
                                             data-target="#edit-modal-{{ $project->id }}"> <i data-feather="check-square"
-                                                class="w-4 h-4 mr-1"></i> Edit </a>
+                                                class="w-4 h-4 mr-1"></i> Edit
+                                            </a>
+                                            <!-- BEGIN: Edit Modal -->
+                                            <div class="modal" id="edit-modal-{{ $project->id }}">
+                                                <div class="modal__content">
+                                                    <div
+                                                        class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
+                                                        <h2 class="font-medium text-base mr-auto">Edit</h2>
+                                                    </div>
+                                                    <form action="{{ route('admin.projects.update', $project->id) }}" method="post"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                                                            <div class="col-span-12 sm:col-span-12"> <label>Name</label> <input
+                                                                    type="text" class="input w-full border mt-2 flex-1"
+                                                                    placeholder="Project name" name="name" value="{{ $project->name }}">
+                                                            </div>
+                                                            <div class="col-span-12 sm:col-span-12"> <label>Description</label> <input
+                                                                    type="text" class="input w-full border mt-2 flex-1"
+                                                                    placeholder="Important Meeting" name="description"
+                                                                    value="{{ $project->description }}"> </div>
+                                                            <div class="col-span-12 sm:col-span-6"> <label>Category</label> <select
+                                                                    class="input w-full border mt-2 flex-1" name="category_id">
+                                                                    @foreach (App\Models\Projects::projectCategoryType() as $key => $value)
+                                                                        <option value="{{ $key }}"
+                                                                            {{ $project->category_id == $key ? 'selected' : '' }}>
+                                                                            {{ $value }}</option>
+                                                                    @endforeach
+                                                                </select> </div>
+                                                            <div class="col-span-12 sm:col-span-6"> <label>Link</label> <input
+                                                                    type="text" class="input w-full border mt-2 flex-1"
+                                                                    placeholder="Link for this project" name="link"
+                                                                    value="{{ $project->link }}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5 text-center"
+                                                            text-center> <button type="button"
+                                                                class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1"
+                                                                data-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="button w-100 bg-theme-12 text-white"> Update
+                                                                Project</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <!-- END: Edit Modal -->
+                                        @endif
+                                        @if ($user->hasPermissionTo('delete projects'))
                                         <a class="flex items-center text-theme-6" href="javascript:;"
                                             onclick="deleteRecord('#delete_form-{{ $project->id }}');"> <i
                                                 data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete </a>
@@ -83,54 +131,12 @@
                                             @csrf
                                             @method('delete')
                                         </form>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
 
-                            <!-- BEGIN: Edit Modal -->
-                            <div class="modal" id="edit-modal-{{ $project->id }}">
-                                <div class="modal__content">
-                                    <div
-                                        class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                                        <h2 class="font-medium text-base mr-auto">Edit</h2>
-                                    </div>
-                                    <form action="{{ route('admin.projects.update', $project->id) }}" method="post"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-                                            <div class="col-span-12 sm:col-span-12"> <label>Name</label> <input
-                                                    type="text" class="input w-full border mt-2 flex-1"
-                                                    placeholder="Project name" name="name" value="{{ $project->name }}">
-                                            </div>
-                                            <div class="col-span-12 sm:col-span-12"> <label>Description</label> <input
-                                                    type="text" class="input w-full border mt-2 flex-1"
-                                                    placeholder="Important Meeting" name="description"
-                                                    value="{{ $project->description }}"> </div>
-                                            <div class="col-span-12 sm:col-span-6"> <label>Category</label> <select
-                                                    class="input w-full border mt-2 flex-1" name="category_id">
-                                                    @foreach (App\Models\Projects::projectCategoryType() as $key => $value)
-                                                        <option value="{{ $key }}"
-                                                            {{ $project->category_id == $key ? 'selected' : '' }}>
-                                                            {{ $value }}</option>
-                                                    @endforeach
-                                                </select> </div>
-                                            <div class="col-span-12 sm:col-span-6"> <label>Link</label> <input
-                                                    type="text" class="input w-full border mt-2 flex-1"
-                                                    placeholder="Link for this project" name="link"
-                                                    value="{{ $project->link }}">
-                                            </div>
-                                        </div>
-                                        <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5 text-center"
-                                            text-center> <button type="button"
-                                                class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1"
-                                                data-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="button w-100 bg-theme-12 text-white"> Update
-                                                Project</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- END: Edit Modal -->
+
                         @empty
                             <tr>
                                 <td colspan="5">No Projects Found</td>

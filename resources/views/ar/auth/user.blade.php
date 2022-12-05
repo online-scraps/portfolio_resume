@@ -54,94 +54,108 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($users as $user)
+                        @forelse ($users as $indUser)
                             <tr class="intro-x">
                                 <td>
                                 </td>
                                 <td>
-                                    <a href="" class="font-medium whitespace-no-wrap">{{ $user->name }}</a>
+                                    <a href="" class="font-medium whitespace-no-wrap">{{ $indUser->name }}</a>
                                 </td>
                                 <td>
                                     <div class="text-gray-600 text-xs whitespace-no-wrap">
-                                        {{ $user->email }}
+                                        {{ $indUser->email }}
                                     </div>
                                 </td>
-                                <td class="text-center">
-                                    {{ $user->getRoleNameForAuthUser($user->id) }}
+                                <td class="">
+                                    {{ $indUser->getRoleNameForAuthUser($indUser->id) }}
                                 </td>
-                                <td class="table-report__action w-56">
+                                <td class="table-report__action w-56 text-center">
                                     <div class="flex justify-center items-center">
-                                        @if ($user->hasPermissionTo('update user'))
+                                        {{-- {{ dd(
+                                            $indUser->hasPermissionTo('delete user'),
+                                            $indUser->hasPermissionTo('update user'),
+                                            $indUser->hasPermissionTo('update user'),
+                                            $indUser->hasPermissionTo('delete user'))
+                                        }} --}}
+
+                                        @if ($indUser->hasPermissionTo('update user'))
                                             <a class="flex items-center mr-3" href="javascript:;" data-toggle="modal"
-                                                data-target="#edit-modal-{{ $user->id }}">
+                                                data-target="#edit-modal-{{ $indUser->id }}">
                                                 <i data-feather="check-square" class="w-4 h-4 mr-1"></i>
-                                                    Edit
-                                                    <!-- BEGIN: Edit Modal -->
-                                                    <div class="modal" id="edit-modal-{{ $user->id }}">
-                                                        <div class="modal__content">
-                                                            <div
-                                                                class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
-                                                                <h2 class="font-medium text-base mr-auto">Edit</h2>
-                                                            </div>
-                                                            <form action="{{ route('admin.users.update', $user->id) }}" method="post"
-                                                                enctype="multipart/form-data">
-                                                                @csrf
-                                                                <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-                                                                    <div class="col-span-6 sm:col-span-12"> <label>Name</label> <input
-                                                                            type="text" class="input w-full border mt-2 flex-1"
-                                                                            placeholder="Project name" name="name"
-                                                                            value="{{ $user->getOldNameForEdit($user->id) }}">
-                                                                    </div>
-                                                                    <div class="col-span-6 sm:col-span-6"> <label>Email</label> <input
-                                                                            type="email" class="input w-full border mt-2 flex-1"
-                                                                            placeholder="Important Meeting" name="email"
-                                                                            value="{{ $user->getOldEmailForEdit($user->id) }}"> </div>
-                                                                    <div class="col-span-12 sm:col-span-6"> <label>Role</label> <select
-                                                                            class="input w-full border mt-2 flex-1" name="role_id"
-                                                                            value="{{ old('role_id') }}">
-                                                                            @foreach ($roles as $role)
-                                                                                <option value="{{ $role->id }}"
-                                                                                    {{ $user->getRoleIdForAuthUser($user->id, $role->id) ? 'selected' : '' }}>
-                                                                                    {{ $role->name }}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-span-12 sm:col-span-6"> <label>Password</label> <input
-                                                                            type="password" class="input w-full border mt-2 flex-1"
-                                                                            placeholder="User Password" name="password"
-                                                                            value="{{ old('password') }}">
-                                                                    </div>
-                                                                    <div class="col-span-12 sm:col-span-6"> <label>Confirm Password</label> <input
-                                                                            type="password" class="input w-full border mt-2 flex-1"
-                                                                            placeholder="Confirm Password" name="password_confirmation"
-                                                                            value="{{ old('password_confirmation') }}">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5 text-center"
-                                                                    text-center> <button type="button"
-                                                                        class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1"
-                                                                        data-dismiss="modal">Cancel</button>
-                                                                    <button type="submit" class="button w-100 bg-theme-12 text-white"> Update
-                                                                        User</button>
-                                                                </div>
-                                                            </form>
+                                                Edit
+                                                <!-- BEGIN: Edit Modal -->
+                                                <div class="modal" id="edit-modal-{{ $indUser->id }}">
+                                                    <div class="modal__content">
+                                                        <div
+                                                            class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200 dark:border-dark-5">
+                                                            <h2 class="font-medium text-base mr-auto">Edit</h2>
                                                         </div>
+                                                        <form action="{{ route('admin.users.update', $user->id) }}"
+                                                            method="post" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                                                                <div class="col-span-6 sm:col-span-12"> <label>Name</label>
+                                                                    <input type="text"
+                                                                        class="input w-full border mt-2 flex-1"
+                                                                        placeholder="Project name" name="name"
+                                                                        value="{{ $user->getOldNameForEdit($user->id) }}">
+                                                                </div>
+                                                                <div class="col-span-6 sm:col-span-6"> <label>Email</label>
+                                                                    <input type="email"
+                                                                        class="input w-full border mt-2 flex-1"
+                                                                        placeholder="Important Meeting" name="email"
+                                                                        value="{{ $user->getOldEmailForEdit($user->id) }}">
+                                                                </div>
+                                                                <div class="col-span-12 sm:col-span-6"> <label>Role</label>
+                                                                    <select class="input w-full border mt-2 flex-1"
+                                                                        name="role_id" value="{{ old('role_id') }}">
+                                                                        @foreach ($roles as $role)
+                                                                            <option value="{{ $role->id }}"
+                                                                                {{ $user->getRoleIdForAuthUser($user->id, $role->id) ? 'selected' : '' }}>
+                                                                                {{ $role->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-span-12 sm:col-span-6">
+                                                                    <label>Password</label> <input type="password"
+                                                                        class="input w-full border mt-2 flex-1"
+                                                                        placeholder="User Password" name="password"
+                                                                        value="{{ old('password') }}">
+                                                                </div>
+                                                                <div class="col-span-12 sm:col-span-6"> <label>Confirm
+                                                                        Password</label> <input type="password"
+                                                                        class="input w-full border mt-2 flex-1"
+                                                                        placeholder="Confirm Password"
+                                                                        name="password_confirmation"
+                                                                        value="{{ old('password_confirmation') }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="px-5 py-3 text-right border-t border-gray-200 dark:border-dark-5 text-center"
+                                                                text-center> <button type="button"
+                                                                    class="button w-20 border text-gray-700 dark:border-dark-5 dark:text-gray-300 mr-1"
+                                                                    data-dismiss="modal">Cancel</button>
+                                                                <button type="submit"
+                                                                    class="button w-100 bg-theme-12 text-white"> Update
+                                                                    User</button>
+                                                            </div>
+                                                        </form>
                                                     </div>
-                                                    <!-- END: Edit Modal -->
+                                                </div>
+                                                <!-- END: Edit Modal -->
                                             </a>
                                         @endif
-                                        @if ($user->hasPermissionTo('delete user'))
+                                        @if ($indUser->hasPermissionTo('delete user'))
                                             <a class="flex items-center text-theme-6" href="javascript:;"
-                                                onclick="deleteRecord('#delete_form-{{ $user->id }}');">
+                                                onclick="deleteRecord('#delete_form-{{ $indUser->id }}');">
                                                 <i data-feather="trash-2" class="w-4 h-4 mr-1"></i>
-                                                    Delete
-                                                </a>
-                                                <form id="delete_form-{{ $user->id }}"
-                                                    action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
-                                                    class="d-none">
-                                                    @csrf
-                                                    @method('delete')
-                                                </form>
+                                                Delete
+                                            </a>
+                                            <form id="delete_form-{{ $indUser->id }}"
+                                                action="{{ route('admin.users.destroy', $indUser->id) }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                                @method('delete')
+                                            </form>
                                         @endif
                                     </div>
                                 </td>

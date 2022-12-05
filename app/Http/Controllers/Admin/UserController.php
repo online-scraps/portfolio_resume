@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Traits\AuthTrait;
 
 class UserController extends Controller
 {
+    use AuthTrait;
     protected $user;
 
     public function __construct()
@@ -27,6 +29,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->checkCRUDPermission('App\Models\User', 'list');
         $this->data['users'] = User::all();
         $this->data['roles'] = Role::all();
         return view('ar.auth.user', $this->data);
@@ -40,6 +43,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
+        $this->checkCRUDPermission('App\Models\User', 'create');
         $roleId = $request->role_id;
         $role = Role::find($roleId);
         $user = new User();
@@ -48,10 +52,6 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         $user->assignRole($role);
-
-
-
-        // dd($user, $user->getRoleNames());
 
         return redirect()->back()->with('success', 'User Created Successfully');
     }
@@ -65,6 +65,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
+        $this->checkCRUDPermission('App\Models\User', 'update');
         $roleId = $request->role_id;
         $role = Role::find($roleId);
 
@@ -86,8 +87,20 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $this->checkCRUDPermission('App\Models\User', 'delete');
         $user = User::find($id);
         $user->delete();
         return redirect()->back()->with('success', 'User Deleted Successfully.');
+    }
+
+    public function assignRoleToUser(Request $request, $id)
+    {
+        $roleId = $request->role_id;
+        $role = Role::find($roleId);
+
+        $user = User::find($id);
+        $user->assignRole($role);
+
+        return redirect()->back()->with('success', 'Role assigned Successfully');
     }
 }

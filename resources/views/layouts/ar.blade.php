@@ -36,6 +36,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END: Head -->
 
 <body class="app">
+    @php
+        $userId = Auth::id();
+        $user = App\Models\User::find($userId);
+    @endphp
     @include('partials.message')
     <!-- BEGIN: Mobile Menu -->
     @include('ar.partials.mobileMenu')

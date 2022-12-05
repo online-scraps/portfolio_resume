@@ -18,6 +18,6 @@ class PermissionsController extends Controller
     public function generatePermissions()
     {
         Artisan::call('generate:permissions');
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Permissions generated for all models.');
     }
 }

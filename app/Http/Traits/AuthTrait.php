@@ -25,18 +25,12 @@ trait AuthTrait {
     public function checkCRUDPermission($modelName, $method)
     {
         $reflection = new ReflectionClass($modelName);
-        $keyArr = ['create', 'list', 'update', 'delete'];
         $user = User::find(Auth::id());
-
-        $permArray = [];
-        foreach ($keyArr as $value) {
-            $permission = $user->hasPermissionTo($method.' '.Str::lower($reflection->getShortName()));
-            $permArray[$value] = $permission;
+        $permission = $user->hasPermissionTo($method.' '.Str::lower($reflection->getShortName()));
             if($permission){
                 return;
             }else{
                 abort(403);
             }
-        }
     }
 }

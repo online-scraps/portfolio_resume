@@ -79,6 +79,7 @@ class ProjectsController extends Controller
      */
     public function destroy($id)
     {
+        $this->checkCRUDPermission('App\Models\Projects', 'delete');
         $project = Projects::find($id);
         $project->delete();
         return redirect()->back()->with('success', 'Project Deleted Successfully.');
