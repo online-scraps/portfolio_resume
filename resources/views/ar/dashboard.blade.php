@@ -116,7 +116,7 @@
                                 All Services
                             </h2>
                             @if ($user->hasPermissionTo('list services'))
-                                <a href="" class="ml-auto text-theme-1 dark:text-theme-10 truncate mx-5">See all</a>
+                                <a href="{{ route('admin.services.index') }}" class="ml-auto text-theme-1 dark:text-theme-10 truncate mx-5">See all</a>
                             @endif
                             <button data-carousel="important-notes" data-target="prev" class="tiny-slider-navigator button px-2 border border-gray-400 dark:border-dark-5 flex items-center text-gray-700 dark:text-gray-600 mr-2"> <i data-feather="chevron-left" class="w-4 h-4"></i> </button>
                             <button data-carousel="important-notes" data-target="next" class="tiny-slider-navigator button px-2 border border-gray-400 dark:border-dark-5 flex items-center text-gray-700 dark:text-gray-600"> <i data-feather="chevron-right" class="w-4 h-4"></i> </button>
@@ -167,9 +167,8 @@
                     @endif
                 </div>
                 @if (count($skills) > 1)
-
                 <!-- BEGIN: Skills -->
-                <div class="col-span-12 sm:col-span-6 lg:col-span-6 mt-8">
+                <div class="col-span-12 lg:col-span-6 mt-8">
                     <div class="intro-y flex items-center h-10">
                         <h2 class="text-lg font-medium truncate mr-5">
                             Skills

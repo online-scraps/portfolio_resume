@@ -25,4 +25,13 @@ class Skills extends Model
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
+
+    public function getSkillType()
+    {
+        $CategoryArr = [
+            1 => 'Hard Skills',
+            2 => 'Soft Skills'
+        ];
+        return $CategoryArr[$this->skill_type_id];
+    }
 }

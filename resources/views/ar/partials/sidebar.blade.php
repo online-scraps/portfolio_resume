@@ -11,14 +11,121 @@
                 <div class="side-menu__title"> Dashboard </div>
             </a>
         </li>
-        {{-- {{ dd(Auth::user(), Auth::id(), \App\Models\User::find(Auth::id()), $user->getRoleNames(), $user->hasPermissionTo('list projects')) }} --}}
-        @if ($user->hasPermissionTo('list projects'))
+        @if ($user->hasPermissionTo('list blogtags') || $user->hasPermissionTo('list blogposts') || $user->hasPermissionTo('list blogcategories'))
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="box"></i> </div>
+                <div class="side-menu__title"> Blogs <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                @if ($user->hasPermissionTo('list blogtags'))
+                    <li>
+                        <a href="{{ route('admin.blog-tag.index') }}" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="side-menu__title"> Tags </div>
+                        </a>
+                    </li>
+                @endif
+                @if ($user->hasPermissionTo('list blogcategories'))
+                    <li>
+                        <a href="{{ route('admin.blog-category.index') }}" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="side-menu__title"> Categories </div>
+                        </a>
+                    </li>
+                @endif
+                @if ($user->hasPermissionTo('list blogposts'))
+                    <li>
+                        <a href="{{ route('admin.blog-post.index') }}" class="side-menu">
+                            <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="side-menu__title"> Posts </div>
+                        </a>
+                    </li>
+                @endif
+            </ul>
+        </li>
+        @endif
+        @if (
+        $user->hasPermissionTo('list educations')
+        || $user->hasPermissionTo('list experiences')
+        || $user->hasPermissionTo('list messages')
+        || $user->hasPermissionTo('list projects')
+        || $user->hasPermissionTo('list services')
+        || $user->hasPermissionTo('list skills')
+        || $user->hasPermissionTo('list socialmedias')
+        || $user->hasPermissionTo('list testimonials'))
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="box"></i> </div>
+                <div class="side-menu__title"> Portfolio <i data-feather="chevron-down" class="side-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                @if ($user->hasPermissionTo('list educations'))
+                <li>
+                    <a href="{{ route('admin.education.index') }}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
+                        <div class="side-menu__title"> Educations </div>
+                    </a>
+                </li>
+            @endif
+            @if ($user->hasPermissionTo('list experiences'))
+                <li>
+                    <a href="{{ route('admin.experience.index') }}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
+                        <div class="side-menu__title"> Experiences </div>
+                    </a>
+                </li>
+            @endif
+            @if ($user->hasPermissionTo('list messages'))
             <li>
-                <a href="{{ route('admin.projects.index') }}" class="side-menu">
+                <a href="{{ route('admin.message.index') }}" class="side-menu">
                     <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
-                    <div class="side-menu__title"> Projects </div>
+                    <div class="side-menu__title"> Messages </div>
+                </a>
+                </li>
+            @endif
+            @if ($user->hasPermissionTo('list projects'))
+                <li>
+                    <a href="{{ route('admin.projects.index') }}" class="side-menu">
+                        <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
+                        <div class="side-menu__title"> Projects </div>
+                    </a>
+                </li>
+            @endif
+            @if ($user->hasPermissionTo('list services'))
+            <li>
+                <a href="{{ route('admin.services.index') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
+                    <div class="side-menu__title"> Services </div>
                 </a>
             </li>
+            @endif
+            @if ($user->hasPermissionTo('list skills'))
+            <li>
+                <a href="{{ route('admin.skill.index') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
+                    <div class="side-menu__title"> Skills </div>
+                </a>
+            </li>
+            @endif
+            @if ($user->hasPermissionTo('list socialmedias'))
+            <li>
+                <a href="{{ route('admin.socialmedia.index') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
+                    <div class="side-menu__title"> Social Medias </div>
+                </a>
+            </li>
+            @endif
+            @if ($user->hasPermissionTo('list testimonials'))
+            <li>
+                <a href="{{ route('admin.testimonials.index') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
+                    <div class="side-menu__title"> Testimonials </div>
+                </a>
+            </li>
+            @endif
+            </ul>
+        </li>
         @endif
         @if ($user->hasPermissionTo('list user') || $user->hasPermissionTo('list role') || $user->hasPermissionTo('list permission'))
         <li>
@@ -53,7 +160,6 @@
                 @endif
             </ul>
         </li>
-
         @endif
     </ul>
 </nav>
