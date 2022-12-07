@@ -7,10 +7,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
 trait AuthTrait {
-    public function index() {
-        $users = User::all();
-        return view('welcome')->with(compact('student'));
-    }
 
     public static function checkPermissionInputFields($permission, $role)
     {
@@ -32,5 +28,14 @@ trait AuthTrait {
             }else{
                 abort(403);
             }
+    }
+
+    public function getModelData($value, $id){
+        $data = get_class($this)::find($id);
+        if ($data){
+            return $data->$value;
+        }else{
+            return "No ".$value." Found";
+        }
     }
 }

@@ -1,7 +1,7 @@
 <!-- BEGIN: Account Menu -->
 <div class="intro-x dropdown w-8 h-8">
     <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in">
-        <img alt="Midone Tailwind HTML Admin Template" src="/ar/dist/images/profile-4.jpg">
+        <img alt="{{ $user->name }}" src="{{ Avatar::create($user->name)->toBase64() }}">
     </div>
     <div class="dropdown-box w-56">
         <div class="dropdown-box__content box bg-theme-38 dark:bg-dark-6 text-white">

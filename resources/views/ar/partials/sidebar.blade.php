@@ -62,7 +62,7 @@
             <ul class="">
                 @if ($user->hasPermissionTo('list educations'))
                 <li>
-                    <a href="{{ route('admin.education.index') }}" class="side-menu">
+                    <a href="{{ route('admin.educations.index') }}" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="hard-drive"></i> </div>
                         <div class="side-menu__title"> Educations </div>
                     </a>

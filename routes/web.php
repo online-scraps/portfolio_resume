@@ -46,7 +46,7 @@ Route::name('admin.')
         Route::resource('/blog-tag', App\Http\Controllers\Admin\BlogTagController::class)->except('create', 'edit', 'show');
         Route::resource('/blog-post', App\Http\Controllers\Admin\BlogPostController::class)->except('create', 'edit', 'show');
 
-        Route::resource('/education', App\Http\Controllers\Admin\EducationController::class)->except('create', 'edit', 'show');
+        Route::resource('/educations', App\Http\Controllers\Admin\EducationController::class)->except('create', 'edit', 'show');
         Route::resource('/experience', App\Http\Controllers\Admin\ExperienceController::class)->except('create', 'edit', 'show');
         Route::resource('/message', App\Http\Controllers\Admin\MessageController::class)->except('create', 'edit', 'show');
         Route::resource('/projects', App\Http\Controllers\Admin\ProjectsController::class)->except('create', 'edit', 'show');

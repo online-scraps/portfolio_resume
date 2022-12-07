@@ -24,11 +24,7 @@ class Projects extends Model
 
     public function getProjectCategoryType()
     {
-        $categoryTypesArr = [
-            1 => 'Personal',
-            2 => 'Professional',
-        ];
-        return $categoryTypesArr[$this->category_id];
+        return $this->projectCategoryType()[$this->category_id];
     }
 
     public function createdByEntity()

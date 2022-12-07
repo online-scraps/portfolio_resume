@@ -51,15 +51,16 @@ class CreateWebsiteMigrations extends Migration
 
         Schema::create('educations', function (Blueprint $table) {
             $table->id();
-            $table->date('start_date');
-            $table->date('end_date')->nullable();
+            $table->string('start_date');
+            $table->string('end_date')->nullable();
             $table->string('course');
             $table->string('institute');
             $table->text('description')->nullable();
             $table->string('grade')->nullable();
             $table->string('total_grade');
             $table->foreignId('created_by')->nullable()->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
-
+            $table->foreignId('updated_by')->nullable()->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->softDeletes();
             $table->timestamps();
         });
 
