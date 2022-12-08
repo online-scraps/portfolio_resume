@@ -20,7 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="keywords"
         content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
-    <title>@yield('title', 'Dashboard - Midone - Tailwind HTML Admin Template')</title>
+    <title>@yield('title', 'Dashboard')</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="/ar/dist/css/app.css" />
     {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css"> --}}

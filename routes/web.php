@@ -60,6 +60,7 @@ Route::name('admin.')
         Route::get('/permissions',[App\Http\Controllers\Admin\PermissionsController::class, 'index'])->name('permissions');
         Route::get('/permissions/generate',[App\Http\Controllers\Admin\PermissionsController::class, 'generatePermissions'])->name('permissions.generate');
         Route::resource('/users', App\Http\Controllers\Admin\UserController::class)->except('create', 'edit', 'show');
+        Route::get('/user/profile',[App\Http\Controllers\Admin\UserController::class, 'myProfileView'])->name('profile');
         Route::post('/users/assign-role', [App\Http\Controllers\Admin\UserController::class, 'assignRoleToUser'])->name('user.assignrole');
 
     });

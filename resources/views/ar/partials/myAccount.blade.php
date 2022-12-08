@@ -1,7 +1,7 @@
 <!-- BEGIN: Account Menu -->
 <div class="intro-x dropdown w-8 h-8">
     <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in">
-        <img alt="{{ $user->name }}" src="{{ Avatar::create($user->name)->toBase64() }}">
+        <img alt="{{ $user->name }}" src="{{ Avatar::create(Str::remove(')', Str::remove('(', $user->name)))->toBase64() }}">
     </div>
     <div class="dropdown-box w-56">
         <div class="dropdown-box__content box bg-theme-38 dark:bg-dark-6 text-white">
@@ -10,12 +10,15 @@
                 <div class="text-xs text-theme-41 dark:text-gray-600">{{ $user->getRoleNameForAuthUser($user->id) }}</div>
             </div>
             <div class="p-2">
-                <a href=""
+                <a href="{{ route('admin.profile') }}"
                     class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
                     <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
-                <a href="{{ route('admin.users.index') }}"
-                    class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
-                    <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add User </a>
+                    @if ($user->hasPermissionTo('create user'))
+                        <a href="{{ route('admin.users.index') }}"
+                            class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
+                            <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add User </a>
+                    @endif
+
                 <a href=""
                     class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
                     <i data-feather="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>

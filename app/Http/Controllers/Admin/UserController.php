@@ -103,4 +103,9 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Role assigned Successfully');
     }
+
+    public function myProfileView()
+    {
+        return view('ar.auth.profile');
+    }
 }

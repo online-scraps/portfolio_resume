@@ -1,8 +1,14 @@
 @extends('layouts.ar')
 
 
+@section('title')
+Dashboard
+@endsection
+
+
 @section('head')
 @endsection
+
 @section('breadcrumb')
     @php
         $userId = Auth::id();
