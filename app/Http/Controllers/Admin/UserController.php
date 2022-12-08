@@ -87,10 +87,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $this->checkCRUDPermission('App\Models\User', 'delete');
         $user = User::find($id);
         $user->delete();
-        return redirect()->back()->with('success', 'User Deleted Successfully.');
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => 'User Deleted Successfully.',
+            ]
+        );
     }
 
     public function assignRoleToUser(Request $request, $id)
