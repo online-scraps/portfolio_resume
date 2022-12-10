@@ -38,4 +38,20 @@ trait AuthTrait {
             return "No ".$value." Found";
         }
     }
+
+    public static function artisanCommands(){
+        return [
+            'migrate:fresh' => "Delete all Database Data",
+            'migrate:fresh --seed' => "Delete all Database Data and reload Default Data",
+            'optimize:clear' => "Optimize Application",
+        ];
+    }
+
+    public static function jsonArtisanCommands(){
+        return response()->json([
+            'migrate:fresh' => "Delete all Database Data",
+            'migrate:fresh --seed' => "Delete all Database Data and reload Default Data",
+            'optimize:clear' => "Optimize Application",
+        ]);
+    }
 }

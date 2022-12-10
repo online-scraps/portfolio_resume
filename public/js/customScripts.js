@@ -68,3 +68,117 @@ function deleteRecord(formId) {
         }
     })
 }
+
+
+
+$(document).ready(function() {
+            //=========================================
+            //  Water Effect
+            //=========================================
+            $('.banner_water_effect').ripples({
+                resolution: 256,
+                dropRadius: 20,
+                perturbance: 0.03,
+                interactive: true,
+            });
+            //  Smoothscroll js
+            //=========================================
+            $(".pageRedirectClass").on('click', function(event) {
+                // debugger;
+                if (this.hash !== "") {
+                    event.preventDefault();
+                    var hash = this.hash;
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 1000, function() {
+
+                        window.location.hash = hash;
+                    });
+                }
+            });
+        });
+
+        function runCommand(command, btnText, title) {
+            Swal.fire({
+                title: title,
+                showCancelButton: true,
+                confirmButtonText: btnText,
+                showLoaderOnConfirm: true,
+                preConfirm: () => {
+                    return $.ajax({
+                        method: "POST",
+                        url: '/maintainance/execute-command',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            command: command
+                        },
+                        success: function(response) {
+                            if (response.status == 'success') {
+                                return response.message;
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            Swal.fire(
+                                'Oops!',
+                                'Error occurred. Try again',
+                                'error'
+                            );
+                        }
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(`${result.value.message}`);
+                }
+            })
+        }
+
+        function runCommandViaInput() {
+            Swal.fire({
+                title: 'Run Artisan Command',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Execute Command',
+                showLoaderOnConfirm: true,
+                preConfirm: (command) => {
+                    return $.ajax({
+                        method: "POST",
+                        url: '/maintainance/execute-command',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            command: command
+                        },
+                        success: function(response) {
+                            if (response.status == 'success') {
+                                return response.message;
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            Swal.fire(
+                                'Oops!',
+                                'Error occurred. Try again',
+                                'error'
+                            );
+                        }
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(`${result.value.message}`);
+                }
+            })
+        }
+
+
+
+        $('.color-panel').each(function() {
+            $('.maintainer-setting').on('click', function() {
+                runCommandViaSelect();
+                // $('.color-panel').toggleClass('open');
+            });
+        });

@@ -17,11 +17,23 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('hr.index');
-});
+})->name('index');
 
 Route::get('/a', function () {
     return view('ar.dashboard');
 });
+
+Route::name('maintainance.')
+    ->prefix('maintainance/')
+    ->controller(App\Http\Controllers\Artisan\CommanController::class)
+    ->group(function () {
+        Route::post('/execute-command', 'executeCommand')->name('execute.command');
+        Route::get('/migrate-fresh', 'migrateFresh')->name('migrate.fresh');
+        Route::get('/migrate-fresh-seed', 'migrateFreshSeed')->name('migrate.fresh.seed');
+        Route::get('/optimize-clear', 'optimizeClear')->name('optimize.clear');
+    });
+
+
 
 
 // Route::view('/soc', 'ar.socialMedia');

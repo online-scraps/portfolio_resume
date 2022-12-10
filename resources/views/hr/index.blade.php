@@ -762,6 +762,8 @@
     </section>
     <!--	End Contact
         ===================================================-->
+
+        @include('hr.partials.artisanCommand')
 @endsection
 
 @section('script')

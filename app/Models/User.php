@@ -69,8 +69,6 @@ class User extends Authenticatable
         return false;
     }
 
-
-
     public function getOldEmailForEdit($userId)
     {
         $user = User::find($userId);
@@ -90,4 +88,21 @@ class User extends Authenticatable
             return "";
         }
     }
+
+    public function maintainerCheck()
+    {
+        // if($this){
+            $status = $this->hasAnyRole('maintainer|super_admin');
+            if($status){
+                return true;
+            }
+        // }
+        
+        return false;
+    }
+
+    // public function (Type $var = null)
+    // {
+    //     # code...
+    // }
 }

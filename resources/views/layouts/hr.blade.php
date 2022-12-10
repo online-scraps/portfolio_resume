@@ -4,6 +4,8 @@
 <!-- index-754:31-->
 
 <head>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!--===== Meta Tag =====-->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -25,7 +27,7 @@
 
     <!-- Favicon
     ==================================================-->
-    <link rel="icon" type="image/png" sizes="32x32" href="/hr//hr/images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/hr/images/favicon.ico">
 
     <!--	Title
     ==================================================-->
@@ -65,7 +67,28 @@
     </div>
     <!-- Color Settings Start
  ==================================================-->
-    @include('hr.partials.color-panel')
+    @php
+        $roleCheck = false;
+        
+        if (Auth::check()) {
+            $user = \App\Models\User::find(Auth::id());
+            $roleCheck = $user->maintainerCheck();
+        }
+    @endphp
+    @if ($roleCheck)
+        <div class="color-panel">
+            <div class="maintainer-setting color_white bg_primary">
+                <div class="text-center icon-spinner">
+                    <i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                </div>
+            </div>
+            <div class="switcher_layout">
+                <button type="button" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Run Artisan Command
+                </button>
+            </div>
+        </div>
+    @endif
     <!--  Color Settings End
  ==============================================-->
 
@@ -78,8 +101,13 @@
             @include('hr.partials.navbar')
             <!-- End Nav Menu
  ==================================================-->
+            {{-- {{ dd((\App\Http\Traits\AuthTrait::artisanCommands())) }} --}}
+            {{-- {{ dd(json_decode(\App\Http\Traits\AuthTrait::jsonArtisanCommands())) }} --}}
+            {{-- {{ dd(json_encode(\App\Http\Traits\AuthTrait::jsonArtisanCommands())) }} --}}
+            {{-- {{ dd(\App\Http\Traits\AuthTrait::jsonArtisanCommands()) }} --}}
 
             @yield('body')
+
             <!--	Start Footer
  ===================================================-->
             @include('hr.partials.footer')
@@ -96,36 +124,73 @@
     <script src="/hr/js/bootstrap.min.js"></script>
     <script src="/hr/js/plugins.js"></script>
     <script src="/hr/js/custom.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/customScripts.js"></script>
     <script>
-        $(document).ready(function() {
-            //=========================================
-            //  Water Effect
-            //=========================================
+        function runCommandViaSelect() {
 
-            $('.banner_water_effect').ripples({
-                resolution: 256,
-                dropRadius: 20,
-                perturbance: 0.03,
-                interactive: true,
-            });
-            //  Smoothscroll js
-            //=========================================
-            $("a").on('click', function(event) {
-                if (this.hash !== "") {
-                    event.preventDefault();
-                    var hash = this.hash;
-                    $('html, body').animate({
-                        scrollTop: $(hash).offset().top
-                    }, 1000, function() {
-
-                        window.location.hash = hash;
+            let options = '<?php echo json_encode(\App\Http\Traits\AuthTrait::artisanCommands()); ?>';
+            options = JSON.parse(options);
+            // debugger;
+            Swal.fire({
+                title: 'Run Artisan Command',
+                input: 'select',
+                inputOptions: options,
+                inputPlaceholder: 'Select a Command',
+                showCancelButton: false,
+                confirmButtonText: 'Execute Command',
+                showLoaderOnConfirm: true,
+                allowOutsideClick: false,
+                preConfirm: (command) => {
+                    return $.ajax({
+                        method: "POST",
+                        url: '/maintainance/execute-command',
+                        data: {
+                            _token: '{{ csrf_token() }}',
+                            command: command
+                        },
+                        success: function(response) {
+                            if (response.status == 'success') {
+                                return response.message;
+                            }
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            Swal.fire(
+                                'Oops!',
+                                'Error occurred. Try again',
+                                'error'
+                            );
+                        }
                     });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-success'
+                        },
+                        buttonsStyling: false
+                    });
+                    swalWithBootstrapButtons.fire({
+                        title: 'Congratulations',
+                        text: `${result.value.message}`,
+                        icon: 'success',
+                        showCancelButton: false,
+                        confirmButtonText: 'Reload all changes to continue',
+                        allowOutsideClick: false,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.reload();
+                        }
+                    })
                 }
-            });
-        });
+            })
+        }
     </script>
-
     @yield('script')
+
+    @stack('script')
 </body>
 
 <!-- index-754:31-->
